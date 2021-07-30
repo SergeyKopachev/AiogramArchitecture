@@ -5,6 +5,8 @@ from core.Base.BaseHandler import BaseHandler
 from app.User.UserKeyboard import UserKeyboard
 from app.User.UserRedis import UserRedis
 
+from app.app_texts import MESSAGES
+
 
 class UserHandler(BaseHandler):
 
@@ -21,4 +23,4 @@ class UserHandler(BaseHandler):
 		dp.register_message_handler(handler.start, commands=['start'])
 
 	async def start(self, msg: Message):
-		await msg.answer('Успехов в разработке приложения!')
+		await msg.answer(MESSAGES['start'])
