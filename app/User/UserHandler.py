@@ -21,6 +21,13 @@ class UserHandler(BaseHandler):
 		handler = cls()
 
 		dp.register_message_handler(handler.start, commands=['start'])
+		dp.register_message_handler(handler.inline_start, commands=['inline_start'])
+		
 
 	async def start(self, msg: Message):
-		await msg.answer(MESSAGES['start'])
+		key = await self.keyboard.back_kb()
+		await msg.answer(MESSAGES['start'], reply_markup=key)
+
+	async def inline_start(self, msg: Message):
+		key = await self.keyboard.inline_back_kb()
+		await msg.answer(MESSAGES['start'], reply_markup=key)
