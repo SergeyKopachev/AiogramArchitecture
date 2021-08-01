@@ -13,7 +13,11 @@ bot = Bot(bot_settings.BOT_TOKEN, parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 async def bot_on_startup(dp):
+	from app.set_bot_command import set_bot_command
+
 	from app.User.UserHandler import UserHandler
+
+	await set_bot_command(dp)
 
 	await UserHandler.register_handlers(dp)
 
